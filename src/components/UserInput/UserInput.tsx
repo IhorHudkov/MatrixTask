@@ -49,6 +49,8 @@ function UserInput() {
           id="M"
           onInput={onChangeHandler}
           value={userValues.M}
+          min="0"
+          max="100"
         />
       </span>
 
@@ -59,6 +61,8 @@ function UserInput() {
           id="N"
           onInput={onChangeHandler}
           value={userValues.N}
+          min="0"
+          max="100"
         />
       </span>
       <span>
@@ -70,6 +74,8 @@ function UserInput() {
           id="X"
           onInput={onChangeHandler}
           value={userValues.X}
+          min="0"
+          max={Math.ceil(((userValues.M * userValues.N) / 100) * 15)}
         />
       </span>
     </header>
