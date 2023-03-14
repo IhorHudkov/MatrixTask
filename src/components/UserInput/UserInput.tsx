@@ -1,13 +1,37 @@
 import { ChangeEvent, useContext } from 'react';
+import { MessageContext } from '../../contexts/MessageContext';
 import { UserInputContext } from '../../contexts/UserInputContext';
 import singletonMatrix from '../../models/Matrix';
 import './UserInput.css';
 
 function UserInput() {
   const { userValues, setUserValues } = useContext(UserInputContext);
+  const { setMessage } = useContext(MessageContext);
+
+  const maxX = Math.ceil(((userValues.M * userValues.N) / 100) * 15);
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const inputId = e.target.id;
+    let maxValue = 100;
+    if (inputId === 'X') maxValue = maxX;
+    if (Number(e.target.value) > maxValue) {
+      e.target.classList.add('input-error');
+      e.target.value = '0';
+      setMessage({
+        type: 'error',
+        isThereAMessage: true,
+        message: `Must be no more than ${maxValue}`,
+      });
+    } else {
+      document
+        .querySelectorAll('.input-error')
+        .forEach((el) => el.classList.remove('input-error'));
+      setMessage({
+        type: 'empty',
+        isThereAMessage: false,
+        message: '',
+      });
+    }
 
     if (inputId === 'M') {
       if (singletonMatrix.isMatrixCreated) {
@@ -23,6 +47,7 @@ function UserInput() {
         singletonMatrix.create(Number(e.target.value), userValues.N);
       }
     }
+
     if (inputId === 'N') {
       if (singletonMatrix.isMatrixCreated) {
         if (Number(e.target.value) < userValues.N) {
@@ -43,7 +68,7 @@ function UserInput() {
   return (
     <header>
       <span>
-        <label htmlFor="M">Number of table rows</label>
+        <label htmlFor="M">Number of table rows (0 - 100)</label>
         <input
           type="number"
           id="M"
@@ -55,7 +80,7 @@ function UserInput() {
       </span>
 
       <span>
-        <label htmlFor="N">Number of table columns</label>
+        <label htmlFor="N">Number of table columns (0 - 100)</label>
         <input
           type="number"
           id="N"
@@ -75,7 +100,7 @@ function UserInput() {
           onInput={onChangeHandler}
           value={userValues.X}
           min="0"
-          max={Math.ceil(((userValues.M * userValues.N) / 100) * 15)}
+          max={maxX}
         />
       </span>
     </header>

@@ -4,9 +4,11 @@ import { UserInputContext } from '../../contexts/UserInputContext';
 import arrayFromNumber from '../../utils/arrayFromNumber';
 import Row from '../Row/Row';
 import singletonMatrix, { CellValue } from '../../models/Matrix';
+import { MessageContext } from '../../contexts/MessageContext';
 
 function Table() {
   const { userValues } = useContext(UserInputContext);
+  const { message } = useContext(MessageContext);
   const [cellValue, setCellValue] = useState<CellValue>(0);
 
   const columnValuesAverage = useCallback(
@@ -20,40 +22,44 @@ function Table() {
     [userValues.M, cellValue]
   );
 
-  return (
-    <div className="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            {arrayFromNumber(userValues.N).map((num, index) => (
-              <th key={index}>{num}</th>
+  if (!message.isThereAMessage) {
+    return (
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              {arrayFromNumber(userValues.N).map((num, index) => (
+                <th key={index}>{num}</th>
+              ))}
+              <th>Sum values</th>
+            </tr>
+          </thead>
+          <tbody>
+            {arrayFromNumber(userValues.M).map((num, index) => (
+              <Row
+                key={`M${index}`}
+                rowNumber={num}
+                cellValue={cellValue}
+                setCellValue={setCellValue}
+              />
             ))}
-            <th>Sum values</th>
-          </tr>
-        </thead>
-        <tbody>
-          {arrayFromNumber(userValues.M).map((num, index) => (
-            <Row
-              key={`M${index}`}
-              rowNumber={num}
-              cellValue={cellValue}
-              setCellValue={setCellValue}
-            />
-          ))}
-          <tr>
-            <td>Average values</td>
-            {arrayFromNumber(userValues.N).map(
-              (num, index) =>
-                userValues.M > 0 && (
-                  <td key={`N${index}`}>{columnValuesAverage(index)}</td>
-                )
-            )}
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+            <tr>
+              <td>Average values</td>
+              {arrayFromNumber(userValues.N).map(
+                (num, index) =>
+                  userValues.M > 0 && (
+                    <td key={`N${index}`}>{columnValuesAverage(index)}</td>
+                  )
+              )}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
+  } else {
+    return <></>;
+  }
 }
 
 export default Table;
