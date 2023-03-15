@@ -1,10 +1,10 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import './Table.css';
-import { UserInputContext } from '../../contexts/UserInputContext';
-import arrayFromNumber from '../../utils/arrayFromNumber';
+import { useCallback, useContext, useState } from 'react';
+import { UserInputContext } from '@/contexts/UserInputContext';
+import { MessageContext } from '@/contexts/MessageContext';
+import arrayFromNumber from '@/utils/arrayFromNumber';
+import singletonMatrix, { CellValue } from '@/models/Matrix';
 import Row from '../Row/Row';
-import singletonMatrix, { CellValue } from '../../models/Matrix';
-import { MessageContext } from '../../contexts/MessageContext';
+import './Table.css';
 
 function Table() {
   const { userValues } = useContext(UserInputContext);

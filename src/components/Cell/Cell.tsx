@@ -1,7 +1,7 @@
 import { useContext, useRef } from 'react';
-import { UserInputContext } from '../../contexts/UserInputContext';
+import { UserInputContext } from '@/contexts/UserInputContext';
+import singletonMatrix from '@/models/Matrix';
 import './Cell.css';
-import singletonMatrix from '../../models/Matrix';
 
 type CellProps = {
   id: number;

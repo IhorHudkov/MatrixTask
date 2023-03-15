@@ -6,8 +6,8 @@ import {
   useRef,
   useState,
 } from 'react';
-import { UserInputContext } from '../../contexts/UserInputContext';
-import singletonMatrix from '../../models/Matrix';
+import { UserInputContext } from '@/contexts/UserInputContext';
+import singletonMatrix from '@/models/Matrix';
 import Cell from '../Cell/Cell';
 import PercentageCell from '../PercentageCell/PercentageCell';
 import RemoveRowBtn from '../RemoveRowBtn/RemoveRowBtn';
