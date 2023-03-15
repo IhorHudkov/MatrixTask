@@ -1,9 +1,6 @@
 table {
     width: 100%;
-    border-collapse: collapse;
-    
-   
-   
+    border-collapse: collapse;  
 }
 
 .table-container {
@@ -14,5 +11,19 @@ table {
 }
 
 td {
-    padding: .5em 1em;
+    padding: .8em 1em;
+    border-right: 2px solid white;
+}
+
+th {
+    border-right: 2px solid white;
+    padding: .3em .5em;
+}
+
+thead {
+    background-color: rgb(242, 242, 242);
+}
+
+.text-bold {
+    font-weight: 600;
 }

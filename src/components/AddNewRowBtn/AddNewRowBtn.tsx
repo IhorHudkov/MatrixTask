@@ -16,11 +16,11 @@ function AddNewRowBtn() {
       X: userValues.X,
     });
   };
-  if (!message.isThereAMessage) {
-    return <button onClick={onClickHandler}>Add row</button>;
-  } else {
-    return <></>;
-  }
+  return !message.isThereAMessage ? (
+    <button onClick={onClickHandler}>Add row</button>
+  ) : (
+    <></>
+  );
 }
 
 export default AddNewRowBtn;

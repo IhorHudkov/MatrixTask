@@ -77,7 +77,6 @@ function UserInput() {
           max="100"
         />
       </span>
-
       <span>
         <label htmlFor="N">Number of table columns (0 - 100)</label>
         <input

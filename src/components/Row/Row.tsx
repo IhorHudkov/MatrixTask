@@ -50,7 +50,7 @@ function Row({ rowNumber, cellValue, setCellValue }: RowProps) {
   };
 
   return (
-    <tr>
+    <tr className="table-row">
       <td className="row-number">{rowNumber}</td>
       {singletonMatrix.matrix[rowNumber - 1].map((cell, index) => {
         if (!isOverSumCell) {

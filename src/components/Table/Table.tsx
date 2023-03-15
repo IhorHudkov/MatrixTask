@@ -33,6 +33,7 @@ function Table() {
                 <th key={index}>{num}</th>
               ))}
               <th>Sum values</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -45,7 +46,7 @@ function Table() {
               />
             ))}
             <tr>
-              <td>Average values</td>
+              <td className="text-bold">Average values</td>
               {arrayFromNumber(userValues.N).map(
                 (num, index) =>
                   userValues.M > 0 && (
