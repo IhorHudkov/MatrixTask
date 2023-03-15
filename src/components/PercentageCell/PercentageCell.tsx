@@ -1,3 +1,5 @@
+import './PercentageCell.css';
+
 type PercentageCellProps = {
   amount: number;
   rowValuesSum: number;

@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { MessageContext } from '@/contexts/MessageContext';
+import { MessageContext } from '@/contexts';
 import './MessageContainer.css';
 
 function MessageContainer() {
-  const { message, setMessage } = useContext(MessageContext);
+  const { message } = useContext(MessageContext);
 
   if (message.isThereAMessage) {
     return (

@@ -1,7 +1,6 @@
 import { ChangeEvent, useContext } from 'react';
-import { MessageContext } from '@/contexts/MessageContext';
-import { UserInputContext } from '@/contexts/UserInputContext';
-import singletonMatrix from '@/models/Matrix';
+import { MessageContext, UserInputContext } from '@/contexts';
+import { singletonMatrix } from '@/models';
 import './UserInput.css';
 
 function UserInput() {

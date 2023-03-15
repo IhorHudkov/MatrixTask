@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
-import { UserInputContext } from '@/contexts/UserInputContext';
-import singletonMatrix from '@/models/Matrix';
+import { UserInputContext } from '@/contexts';
+import { singletonMatrix } from '@/models';
 import './RemoveRowBtn.css';
 
 type RemoveRowBtnProps = {

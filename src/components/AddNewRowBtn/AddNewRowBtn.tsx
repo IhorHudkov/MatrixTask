@@ -1,8 +1,7 @@
 import { useContext } from 'react';
-import { UserInputContext } from '@/contexts/UserInputContext';
-import { MessageContext } from '@/contexts/MessageContext';
-import singletonMatrix from '@/models/Matrix';
-import scrollToBottom from '@/utils/scrollToBottom';
+import { UserInputContext, MessageContext } from '@/contexts';
+import { singletonMatrix } from '@/models';
+import { scrollToBottom } from '@/utils';
 
 function AddNewRowBtn() {
   const { userValues, setUserValues } = useContext(UserInputContext);

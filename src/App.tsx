@@ -1,9 +1,5 @@
-import UserInputProvider from './contexts/UserInputContext';
-import MessageProvider from './contexts/MessageContext';
-import UserInput from './components/UserInput/UserInput';
-import Table from './components/Table/Table';
-import AddNewRowBtn from './components/AddNewRowBtn/AddNewRowBtn';
-import MessageContainer from './components/MessageContainer/MessageContainer';
+import { UserInputProvider, MessageProvider } from '@/contexts';
+import { Table, UserInput, AddNewRowBtn, MessageContainer } from '@/components';
 import './App.css';
 
 function App() {
