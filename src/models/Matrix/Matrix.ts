@@ -6,7 +6,7 @@ export type Cell = {
   amount: CellValue;
 };
 
-class Matrix {
+export class Matrix {
   private static instance: Matrix;
   private constructor() {}
   public static getInstance(): Matrix {
@@ -37,6 +37,9 @@ class Matrix {
   }
 
   public create(rows: number, columns: number) {
+    if (this.isMatrixCreated) {
+      throw new Error('The matrix already exists');
+    }
     this.M = rows;
     this.N = columns;
     this._size = this.M * this.N;
@@ -127,19 +130,26 @@ class Matrix {
     return this._matrix;
   }
 
-  public fillInMatrix() {
+  private fillInMatrix() {
     for (let m = 0; m < this.M; m++) {
-      if (this.N === 0) {
-        this._matrix.push([]);
-        continue;
-      }
+      this._matrix.push([]);
+    }
+    for (let m = 0; m < this.M; m++) {
       for (let n = 0; n < this.N; n++) {
-        this._matrix[m][n] = {
+        this._matrix[m].push({
           id: this.generateCellId(),
           amount: this.generateCellValue(),
-        };
+        });
       }
     }
+  }
+
+  public delete() {
+    this.M = 0;
+    this.N = 0;
+    this._size = 0;
+    this._matrix = [];
+    this._isMatrixCreated = false;
   }
 }
 

@@ -1,3 +1,3 @@
-import singletonMatrix from './Matrix';
+import singletonMatrix from './Matrix/Matrix';
 
 export { singletonMatrix };
