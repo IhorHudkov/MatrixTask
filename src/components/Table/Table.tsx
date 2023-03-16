@@ -2,7 +2,7 @@ import { useCallback, useContext, useState } from 'react';
 import { UserInputContext, MessageContext } from '@/contexts';
 import { arrayFromNumber } from '@/utils';
 import { singletonMatrix } from '@/models';
-import { CellValue } from '@/models/Matrix';
+import { CellValue } from '@/models/Matrix/Matrix';
 import { Row } from '@/components';
 import './Table.css';
 
