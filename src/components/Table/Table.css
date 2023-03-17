@@ -27,3 +27,8 @@ thead {
 .text-bold {
     font-weight: 600;
 }
+
+
+.illuminated {
+    background-color: cadetblue;
+}

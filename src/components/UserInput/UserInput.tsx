@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext } from 'react';
+import { ChangeEvent, useContext, useRef } from 'react';
 import { MessageContext, UserInputContext } from '@/contexts';
 import { singletonMatrix } from '@/models';
 import './UserInput.css';
@@ -6,6 +6,7 @@ import './UserInput.css';
 function UserInput() {
   const { userValues, setUserValues } = useContext(UserInputContext);
   const { setMessage } = useContext(MessageContext);
+  const headerRef = useRef<HTMLElement>(null);
 
   const maxX = Math.ceil(((userValues.M * userValues.N) / 100) * 15);
 
@@ -22,8 +23,8 @@ function UserInput() {
         message: `Must be no more than ${maxValue}`,
       });
     } else {
-      document
-        .querySelectorAll('.input-error')
+      headerRef.current
+        ?.querySelectorAll('.input-error')
         .forEach((el) => el.classList.remove('input-error'));
       setMessage({
         type: 'empty',
@@ -65,7 +66,7 @@ function UserInput() {
   };
 
   return (
-    <header>
+    <header ref={headerRef}>
       <span>
         <label htmlFor="M">Number of table rows (0 - 100)</label>
         <input

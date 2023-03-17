@@ -16,9 +16,8 @@ type RowProps = {
   cellValue: number;
   setCellValue: Dispatch<SetStateAction<number>>;
 };
-
 function Row({ rowNumber, cellValue, setCellValue }: RowProps) {
-  const ref = useRef<null | HTMLTableCellElement>(null);
+  const sumCellRef = useRef<null | HTMLTableCellElement>(null);
   const [isOverSumCell, setIsOverSumCell] = useState(false);
   const { userValues } = useContext(UserInputContext);
 
@@ -40,12 +39,12 @@ function Row({ rowNumber, cellValue, setCellValue }: RowProps) {
   };
 
   const onMouseOverSumCellHandler = () => {
-    ref.current?.classList.add('active');
+    sumCellRef.current?.classList.add('active');
     setIsOverSumCell(true);
   };
 
   const onMouseOutSumCellHandler = () => {
-    ref.current?.classList.remove('active');
+    sumCellRef.current?.classList.remove('active');
     setIsOverSumCell(false);
   };
 
@@ -73,7 +72,7 @@ function Row({ rowNumber, cellValue, setCellValue }: RowProps) {
         }
       })}
       <td
-        ref={ref}
+        ref={sumCellRef}
         onMouseOver={onMouseOverSumCellHandler}
         onMouseOut={onMouseOutSumCellHandler}
       >

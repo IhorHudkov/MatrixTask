@@ -1,4 +1,8 @@
-import { UserInputProvider, MessageProvider } from '@/contexts';
+import {
+  UserInputProvider,
+  MessageProvider,
+  XCellIdsProvider,
+} from '@/contexts';
 import { Table, UserInput, AddNewRowBtn, MessageContainer } from '@/components';
 import './App.css';
 
@@ -9,7 +13,9 @@ function App() {
         <MessageProvider>
           <UserInput />
           <MessageContainer />
-          <Table />
+          <XCellIdsProvider>
+            <Table />
+          </XCellIdsProvider>
           <AddNewRowBtn />
         </MessageProvider>
       </UserInputProvider>

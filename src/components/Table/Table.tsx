@@ -1,5 +1,11 @@
-import { useCallback, useContext, useState } from 'react';
-import { UserInputContext, MessageContext } from '@/contexts';
+import {
+  useCallback,
+  useContext,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+import { UserInputContext, MessageContext, XCellIdsContext } from '@/contexts';
 import { arrayFromNumber } from '@/utils';
 import { singletonMatrix } from '@/models';
 import { CellValue } from '@/models/Matrix/Matrix';
@@ -9,7 +15,9 @@ import './Table.css';
 function Table() {
   const { userValues } = useContext(UserInputContext);
   const { message } = useContext(MessageContext);
+  const { xCellIds } = useContext(XCellIdsContext);
   const [cellValue, setCellValue] = useState<CellValue>(0);
+  const tableRef = useRef<HTMLTableElement | null>(null);
 
   const columnValuesAverage = useCallback(
     (index: number) =>
@@ -22,10 +30,24 @@ function Table() {
     [userValues.M, cellValue]
   );
 
+  useLayoutEffect(() => {
+    tableRef.current?.querySelectorAll('td').forEach((td) => {
+      if (td.classList.contains('illuminated')) {
+        td.classList.remove('illuminated');
+      }
+    });
+
+    xCellIds.forEach((id) => {
+      tableRef.current
+        ?.querySelector(`td[id='${id}']`)
+        ?.classList.add('illuminated');
+    });
+  }, [xCellIds]);
+
   if (!message.isThereAMessage) {
     return (
       <div className="table-container">
-        <table>
+        <table ref={tableRef}>
           <thead>
             <tr>
               <th></th>

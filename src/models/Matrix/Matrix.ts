@@ -57,6 +57,31 @@ export class Matrix {
     }
   }
 
+  public getCellIdsClosestByValue(cellId: CellId, x: number) {
+    const xCellsIds: Number[] = [];
+    let upperBound = Math.ceil(x / 2);
+    let lowerBound = Math.floor(x / 2);
+    let upperExtension = 1;
+    [...this.cells]
+      .sort((prev, next) => prev.amount - next.amount)
+      .every((cell, index, array) => {
+        if (cell.id === cellId) {
+          for (let i = index + 1; i <= index + upperBound; i++) {
+            if (array[i]) xCellsIds.push(array[i].id);
+            else lowerBound++;
+          }
+          for (let i = index - 1; i >= index - lowerBound; i--) {
+            if (array[i]) xCellsIds.push(array[i].id);
+            else if (array[index + upperBound + upperExtension])
+              xCellsIds.push(array[index + upperBound + upperExtension++].id);
+          }
+          return false;
+        }
+        return true;
+      });
+    return xCellsIds;
+  }
+
   public getCell(cellId: CellId) {
     const index = this.cells.findIndex((cell) => cell.id === cellId);
     return this.cells[index];
